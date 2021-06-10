@@ -1,0 +1,57 @@
+body {
+  display: flex;
+  height:100vh;
+  margin: 0%;
+}
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  background-color: teal;
+  color: white;
+}
+
+p {
+  font-size: 100px;
+  color: white;
+}
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.winner {
+  height: 60px;
+  width: 60px;
+}
+
+.winner-display {
+  display: flex;
+}
+
+.icon {
+  height: 100px;
+  width: 100px;
+}
+
+.gameboard {
+  display: flex;
+  flex-wrap: wrap;
+  height:48vh;
+  width: 45vh;
+  border: 2px solid blue;
+
+}
+
+button {
+  height: 33.333%;
+  width: 33.333%;
+  margin: 0%;
+  padding: 0%;
+}
