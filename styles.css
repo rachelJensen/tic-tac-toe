@@ -1,0 +1,12 @@
+body {
+  display: flex;
+}
+
+.side-bar {
+  width: 25%;
+  background-color: teal;
+}
+
+main {
+  width: 50%;
+}
