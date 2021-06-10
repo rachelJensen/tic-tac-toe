@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-  <link rel="stylesheet" hrf="styles.css">
+  <link rel="stylesheet" href="styles.css">
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
 
-    <section class="side-bar" id="player1Score"></section>
-      <img class="player1-icon" src="./assets/1566741.svg" alt="unicorn">
-      <h2>Wins!</h2>
+    <section class="side-bar" id="player1Score">
+      <img class="dragon icon" src="./assets/1566741.svg" alt="dragon">
+      <h2>Wins</h2>
+      <p>#</p>
+    </section>
     <main>
-      <h1></h1>
+      <div class="winner-display">
+        <img class="dragon winner" src="./assets/1566741.svg" alt="dragon">
+        <img class="unicorn winner" src="./assets/2023216.svg" alt="unicorn" hidden>
+        <h1>Won!</h1>
+      </div>
       <section class="gameboard">
         <button id="sqr1"></button>
         <button id="sqr2"></button>
@@ -25,8 +31,9 @@
       </section>
     </main>
     <section class="side-bar" id="player2Score">
-      <img class="player2-icon" src="./assets/2023216.svg" alt="dragon">
+      <img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">
       <h2>Wins!</h2>
+      <p>#</p>
     </section>
 
     <script type="text/javascript" src="./player.js" ></script>
