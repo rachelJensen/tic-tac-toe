@@ -18,10 +18,16 @@ function play(squareClicked) {
   var winner = currentGame.checkForWin();
   if (winner) {
     return winner;
+    //should activate the saveWinsToStorage method
+    // update the display of the winnings using retrieveWinsFromStorage method
+    //display the winner on the DOM
+
   }
   var draw = currentGame.checkForDraw();
   if (draw) {
     return draw;
+    //rather than returning draw, this should invoke a function that will display the draw message to the DOM
+    //activate the reset timer
   }
 }
 
@@ -36,8 +42,10 @@ function setWhosTurn() {
 function selectSquare(square) {
   setWhosTurn();
   var mark = currentGame.whosTurn;
-  currentGame.gameboard[square] = mark;
-  currentGame.playCount++;
+  if (typeof currentGame.gameboard[square] === 'number') {
+    currentGame.gameboard[square] = mark;
+    currentGame.playCount++;
+  };
 }
 
 
