@@ -1,7 +1,7 @@
 class Game {
-  constructor() {
-    this.player1 = new Player();
-    this.player2 = new Player();
+  constructor(player1, player2) {
+    this.player1 = player1;
+    this.player2 = player2;
     this.gameboard = {
       one: 1,
       two: 2,
@@ -13,8 +13,8 @@ class Game {
       eight: 8,
       nine: 9
     }
-    this.is1sTurn: true;
-    this.is2sTurn: false;
+    this.playCount = 0;
+    this.whosTurn = null;
   }
 
   checkForWin() {
@@ -49,10 +49,12 @@ class Game {
   };
 
   checkForDraw() {
-    
+    if (this.playCount === 9) {
+
+    }
   }
 
   resetBoard() {
-    this.setTimeout()
+    //reseting the board should just be an
   }
 }
