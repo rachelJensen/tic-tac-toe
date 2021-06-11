@@ -13,6 +13,18 @@ var currentGame = new Game(p1, p2);
 
 //functions
 
+function play(squareClicked) {
+  selectSquare(squareClicked);
+  var winner = currentGame.checkForWin();
+  if (winner) {
+    return winner;
+  }
+  var draw = currentGame.checkForDraw();
+  if (draw) {
+    return draw;
+  }
+}
+
 function setWhosTurn() {
   if (currentGame.playCount % 2 === 0) {
     currentGame.whosTurn = currentGame.player1.token;
@@ -24,7 +36,6 @@ function setWhosTurn() {
 function selectSquare(square) {
   setWhosTurn();
   var mark = currentGame.whosTurn;
-  console.log(mark);
   currentGame.gameboard[square] = mark;
   currentGame.playCount++;
 }
