@@ -62,7 +62,7 @@ class Game {
     }
   }
 
-  resetBoard() {
-    //reseting the board should just be an
+  resetBoard(player1, player2) {
+    currentGame = new Game(player1, player2);
   }
 }

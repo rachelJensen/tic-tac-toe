@@ -25,9 +25,10 @@ function play(squareClicked) {
   }
   var draw = currentGame.checkForDraw();
   if (draw) {
-    return draw;
+    console.log(draw);
     //rather than returning draw, this should invoke a function that will display the draw message to the DOM
-    //activate the reset timer
+    //activate the reset timer scope.setTimeout(startNewGame[, 3])
+      // --> does scope refer to the DOM or the data model??
   }
 }
 
@@ -45,9 +46,12 @@ function selectSquare(square) {
   if (typeof currentGame.gameboard[square] === 'number') {
     currentGame.gameboard[square] = mark;
     currentGame.playCount++;
-  };
-}
+  }
+};
 
+function startNewGame() {
+  currentGame.resetBoard(p1,p2);
+}
 
 
 
