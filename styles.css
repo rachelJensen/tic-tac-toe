@@ -22,7 +22,7 @@ p {
   color: white;
 }
 
-
+/* Center */
 main {
   display: flex;
   flex-direction: column;

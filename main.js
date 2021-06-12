@@ -3,18 +3,20 @@ var p1 = new Player('player1', 'dragon');
 var p2 = new Player('player2', 'unicorn');
 var currentGame = new Game(p1, p2);
 
-
+var board = document.getElementById('gameboard');
 
 //event listeners
-
-
-//if you have an event listenter on
+board.addEventListener('click', function(event) {
+  play(event);
+});
 
 
 //functions
 
-function play(squareClicked) {
-  selectSquare(squareClicked);
+function play(event) {
+  var chosen = event.target.id;
+  selectSquare(chosen);
+
   var winner = currentGame.checkForWin();
   if (winner) {
     return winner;
