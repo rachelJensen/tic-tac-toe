@@ -13,6 +13,25 @@ var currentGame = new Game(p1, p2);
 
 //functions
 
+function play(squareClicked) {
+  selectSquare(squareClicked);
+  var winner = currentGame.checkForWin();
+  if (winner) {
+    return winner;
+    //should activate the saveWinsToStorage method
+    // update the display of the winnings using retrieveWinsFromStorage method
+    //display the winner on the DOM
+
+  }
+  var draw = currentGame.checkForDraw();
+  if (draw) {
+    console.log(draw);
+    //rather than returning draw, this should invoke a function that will display the draw message to the DOM
+    //activate the reset timer scope.setTimeout(startNewGame[, 3])
+      // --> does scope refer to the DOM or the data model??
+  }
+}
+
 function setWhosTurn() {
   if (currentGame.playCount % 2 === 0) {
     currentGame.whosTurn = currentGame.player1.token;
@@ -24,11 +43,15 @@ function setWhosTurn() {
 function selectSquare(square) {
   setWhosTurn();
   var mark = currentGame.whosTurn;
-  console.log(mark);
-  currentGame.gameboard[square] = mark;
-  currentGame.playCount++;
-}
+  if (typeof currentGame.gameboard[square] === 'number') {
+    currentGame.gameboard[square] = mark;
+    currentGame.playCount++;
+  }
+};
 
+function startNewGame() {
+  currentGame.resetBoard(p1,p2);
+}
 
 
 

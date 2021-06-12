@@ -23,38 +23,46 @@ class Game {
 
     if (square.one === square.two && square.one === square.three) {
       winner = square.one;
+      console.log('found a winner', 'row 1')
     }
     if (square.four === square.five && square.four === square.six) {
       winner = square.four;
+      console.log('found a winner', 'row 2')
     }
     if (square.seven === square.eight && square.seven === square.nine) {
       winner = square.seven;
+      console.log('found a winner', 'row 3')
     }
     if (square.one === square.four && square.one === square.seven) {
       winner = square.one;
+      console.log('found a winner', 'column 1')
     }
     if (square.two === square.five && square.two === square.eight) {
       winner = square.two;
+      console.log('found a winner', 'column 2')
     }
     if (square.three === square.six && square.three === square.nine) {
       winner = square.three;
+      console.log('found a winner', 'column 3')
     }
     if (square.three === square.five && square.three === square.seven) {
       winner = square.three;
+      console.log('found a winner', 'diagnol 1')
     }
     if (square.one === square.five && square.one === square.nine) {
       winner = square.one;
+      console.log('found a winner', 'diagnol 2')
     }
     return winner;
   };
 
   checkForDraw() {
     if (this.playCount === 9) {
-
+      return 'draw';
     }
   }
 
-  resetBoard() {
-    //reseting the board should just be an
+  resetBoard(player1, player2) {
+    currentGame = new Game(player1, player2);
   }
 }
