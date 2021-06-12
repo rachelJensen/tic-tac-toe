@@ -16,7 +16,7 @@ board.addEventListener('click', function(event) {
 function play(event) {
   setWhosTurn();
   selectSquare(event.target.id);
-  displayToken(event.target.id);
+  displayBoard();
 
   if (currentGame.checkForWin()) {
     //save win (to storage)
@@ -49,14 +49,14 @@ function selectSquare(squareId) {
   }
 };
 
-function displayToken(squareId) {
-  var squareToMark = document.getElementById(squareId);
-  if (currentGame.gameboard[squareId] === 'player1') {
-    squareToMark.innerHTML = '<img class="icon" src="./assets/1566741.svg" alt="dragon">';
-  } else {
-    squareToMark.innerHTML = '<img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">';
-  }
-}
+// function displayToken(squareId) {
+//   var squareToMark = document.getElementById(squareId);
+//   if (currentGame.gameboard[squareId] === 'player1') {
+//     squareToMark.innerHTML = '<img class="icon" src="./assets/1566741.svg" alt="dragon">';
+//   } else {
+//     squareToMark.innerHTML = '<img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">';
+//   }
+// }
 
 function displayWinner() {
 
@@ -66,3 +66,30 @@ function startNewGame() {
   currentGame.resetBoard(p1,p2);
   //reset display
 }
+
+function displayBoard() {
+  for (var property in currentGame.gameboard) {
+    var squareToMark = document.getElementById(property);
+
+    if (currentGame.gameboard[property] === 'player1') {
+     squareToMark.innerHTML = '<img class="icon" src="./assets/1566741.svg" alt="dragon">';
+    }
+
+    if (currentGame.gameboard[property] === 'player2'){
+      squareToMark.innerHTML = '<img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">';
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//
