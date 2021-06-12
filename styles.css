@@ -1,3 +1,7 @@
+* {
+    border: 2px solid yellow;
+}
+
 body {
   display: flex;
   height:100vh;
@@ -45,8 +49,8 @@ main {
   flex-wrap: wrap;
   height:48vh;
   width: 45vh;
-  border: 2px solid blue;
-
+  border: 10px solid white;
+  padding: 0%;
 }
 
 button {
@@ -54,4 +58,5 @@ button {
   width: 33.333%;
   margin: 0%;
   padding: 0%;
+  cursor: pointer;
 }
