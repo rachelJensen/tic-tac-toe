@@ -15,16 +15,19 @@ board.addEventListener('click', function(event) {
 
 function play(event) {
   var chosen = event.target.id;
+  setWhosTurn();
   selectSquare(chosen);
 
   var winner = currentGame.checkForWin();
   if (winner) {
-    return winner;
+    currentGame[winner].wins++;
     //should activate the saveWinsToStorage method
     // update the display of the winnings using retrieveWinsFromStorage method
     //display the winner on the DOM
+    window.setTimeout(startNewGame, 3000);
 
   }
+
   var draw = currentGame.checkForDraw();
   if (draw) {
     console.log(draw);
@@ -36,14 +39,14 @@ function play(event) {
 
 function setWhosTurn() {
   if (currentGame.playCount % 2 === 0) {
-    currentGame.whosTurn = currentGame.player1.token;
+    currentGame.whosTurn = currentGame.player1.id;
   } else {
-    currentGame.whosTurn = currentGame.player2.token;
+    currentGame.whosTurn = currentGame.player2.id;
   }
 }
 
 function selectSquare(square) {
-  setWhosTurn();
+  // setWhosTurn();
   var mark = currentGame.whosTurn;
   if (typeof currentGame.gameboard[square] === 'number') {
     currentGame.gameboard[square] = mark;
@@ -55,6 +58,13 @@ function startNewGame() {
   currentGame.resetBoard(p1,p2);
 }
 
+function displayWinner() {
+
+}
+
+function displayToken() {
+
+}
 
 
 /* When the page loads, a new game should be ready to be played.
