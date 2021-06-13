@@ -31,7 +31,7 @@ function play(event) {
     window.setTimeout(startNewGame, 3000);
     return;
   }
-  
+
   declareWhosTurn();
 
   if (currentGame.checkForDraw()) {
@@ -52,7 +52,7 @@ function declareWhosTurn() { //HAS BUGS
 
 function declareWinner() {
   its.hidden = true;
-  turnOrWin.innerText = 'won';
+  turnOrWin.innerText = 'won!';
 }
 
 function updateScoreDisplay(winnerInfo) {
@@ -76,16 +76,13 @@ function selectSquare(squareId) {
   }
 };
 
-
-function displayWinner() {
-
-}
-
 function startNewGame() {
   currentGame.resetBoard(dragon, unicorn);
   displayBoard();
   dragonImg.hidden = false; //fixes bug in declareWhosTurn
   unicornImg.hidden = true; //fixes bug in declareWhosTurn
+  its.hidden = false;
+  turnOrWin.innerText = 's Turn';
 }
 
 function displayBoard() {
