@@ -6,6 +6,8 @@ var currentGame = new Game(dragon,  unicorn);
 var board = document.getElementById('gameboard');
 var dragonsTurn = document.getElementById('dragonImg');
 var unicornsTurn = document.getElementById('unicornImg');
+var its = document.getElementById('its');
+var turnOrWin = document.getElementById('turnOrWin');
 
 //event listeners
 board.addEventListener('click', function(event) {
@@ -17,7 +19,6 @@ function play(event) {
   setWhosTurn();
   selectSquare(event.target.id);
   displayBoard();
-  declareWhosTurn();
 
   var winner = currentGame.checkForWin();
   if (winner) {
@@ -28,7 +29,10 @@ function play(event) {
     //display winnings (from storage)
     updateScoreDisplay(currentGame[winner]); //displays from data model
     window.setTimeout(startNewGame, 3000);
+    return;
   }
+  
+  declareWhosTurn();
 
   if (currentGame.checkForDraw()) {
     //display draw message
@@ -47,7 +51,8 @@ function declareWhosTurn() { //HAS BUGS
 }
 
 function declareWinner() {
-
+  its.hidden = true;
+  turnOrWin.innerText = 'won';
 }
 
 function updateScoreDisplay(winnerInfo) {
@@ -79,6 +84,8 @@ function displayWinner() {
 function startNewGame() {
   currentGame.resetBoard(dragon, unicorn);
   displayBoard();
+  dragonImg.hidden = false; //fixes bug in declareWhosTurn
+  unicornImg.hidden = true; //fixes bug in declareWhosTurn
 }
 
 function displayBoard() {
