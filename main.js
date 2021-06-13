@@ -8,6 +8,7 @@ var dragonsTurn = document.getElementById('dragonImg');
 var unicornsTurn = document.getElementById('unicornImg');
 var its = document.getElementById('its');
 var turnOrWin = document.getElementById('turnOrWin');
+var header = document.getElementById('title');
 
 //event listeners
 board.addEventListener('click', function(event) {
@@ -27,7 +28,7 @@ function play(event) {
 function checkWinner() {
   var winner = currentGame.checkForWin();
   if (winner) {
-    //disable eventListener
+    //disable event listener
     currentGame[winner].wins += 1;;
     currentGame[winner].saveWinsToStorage();
     declareWinner();
@@ -40,12 +41,13 @@ function checkWinner() {
 function checkDraw() {
   if (currentGame.checkForDraw()) {
     //display draw message
+    header.innerHTML = `<h1>It's a draw</h1>`;
     window.setTimeout(startNewGame, 5000);
   }
 }
 
-function declareWhosTurn() { //HAS BUGS
-  if (currentGame.whosTurn === 'player2') {
+function declareWhosTurn() {
+  if (currentGame.whosTurn === 'player1') {
     dragonImg.hidden = false;
     unicornImg.hidden = true;
   } else {
@@ -83,8 +85,8 @@ function selectSquare(squareId) {
 function startNewGame() {
   currentGame.resetBoard(dragon, unicorn);
   displayBoard();
-  dragonImg.hidden = false; //fixes bug in declareWhosTurn
-  unicornImg.hidden = true; //fixes bug in declareWhosTurn
+  dragonImg.hidden = false;
+  unicornImg.hidden = true;
   its.hidden = false;
   turnOrWin.innerText = 's Turn';
 };
