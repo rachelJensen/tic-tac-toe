@@ -1,82 +1,116 @@
 //global variables
-var p1 = new Player('player1', 'dragon');
-var p2 = new Player('player2', 'unicorn');
-var currentGame = new Game(p1, p2);
+var dragon = new Player('player1', 'dragon1');
+var unicorn = new Player('player2', 'unicorn2');
+var currentGame = new Game(dragon,  unicorn);
 
-
+var board = document.getElementById('gameboard');
+var dragonsTurn = document.getElementById('dragonImg');
+var unicornsTurn = document.getElementById('unicornImg');
+var its = document.getElementById('its');
+var turnOrWin = document.getElementById('turnOrWin');
 
 //event listeners
-
-
-//if you have an event listenter on
-
+board.addEventListener('click', function(event) {
+  play(event);
+});
 
 //functions
+function play(event) {
+  setWhosTurn();
+  selectSquare(event.target.id);
+  displayBoard();
 
-function play(squareClicked) {
-  selectSquare(squareClicked);
   var winner = currentGame.checkForWin();
   if (winner) {
-    return winner;
-    //should activate the saveWinsToStorage method
-    // update the display of the winnings using retrieveWinsFromStorage method
-    //display the winner on the DOM
+    //disable eventListener
+    currentGame[winner].wins += 1;;
+    currentGame[winner].saveWinsToStorage();
+    declareWinner();
+    //display winnings (from storage)
+    updateScoreDisplay(currentGame[winner]); //displays from data model
+    window.setTimeout(startNewGame, 3000);
+    return;
+  }
+  
+  declareWhosTurn();
 
+  if (currentGame.checkForDraw()) {
+    //display draw message
+    window.setTimeout(startNewGame, 5000);
   }
-  var draw = currentGame.checkForDraw();
-  if (draw) {
-    console.log(draw);
-    //rather than returning draw, this should invoke a function that will display the draw message to the DOM
-    //activate the reset timer scope.setTimeout(startNewGame[, 3])
-      // --> does scope refer to the DOM or the data model??
+}
+
+function declareWhosTurn() { //HAS BUGS
+  if (currentGame.whosTurn === 'player2') {
+    dragonImg.hidden = false;
+    unicornImg.hidden = true;
+  } else {
+    dragonImg.hidden = true;
+    unicornImg.hidden = false;
   }
+}
+
+function declareWinner() {
+  its.hidden = true;
+  turnOrWin.innerText = 'won';
+}
+
+function updateScoreDisplay(winnerInfo) {
+  var scoreToUpdate = document.getElementById(winnerInfo.token);
+  scoreToUpdate.innerText = winnerInfo.wins;
 }
 
 function setWhosTurn() {
   if (currentGame.playCount % 2 === 0) {
-    currentGame.whosTurn = currentGame.player1.token;
+    currentGame.whosTurn = currentGame.player1.id;
   } else {
-    currentGame.whosTurn = currentGame.player2.token;
+    currentGame.whosTurn = currentGame.player2.id;
   }
 }
 
-function selectSquare(square) {
-  setWhosTurn();
+function selectSquare(squareId) {
   var mark = currentGame.whosTurn;
-  if (typeof currentGame.gameboard[square] === 'number') {
-    currentGame.gameboard[square] = mark;
+  if (typeof currentGame.gameboard[squareId] === 'number') {
+    currentGame.gameboard[squareId] = mark;
     currentGame.playCount++;
   }
 };
 
+
+function displayWinner() {
+
+}
+
 function startNewGame() {
-  currentGame.resetBoard(p1,p2);
+  currentGame.resetBoard(dragon, unicorn);
+  displayBoard();
+  dragonImg.hidden = false; //fixes bug in declareWhosTurn
+  unicornImg.hidden = true; //fixes bug in declareWhosTurn
+}
+
+function displayBoard() {
+  for (var property in currentGame.gameboard) {
+    var squareToMark = document.getElementById(property);
+
+    if (currentGame.gameboard[property] === 'player1') {
+      squareToMark.innerHTML = '<img class="icon" src="./assets/1566741.svg" alt="dragon">';
+    } else if (currentGame.gameboard[property] === 'player2'){
+      squareToMark.innerHTML = '<img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">';
+    } else {
+      squareToMark.innerHTML = '';
+    }
+  }
 }
 
 
 
-/* When the page loads, a new game should be ready to be played.
 
-Each click will...
-  - check who's turn it is (game.is1sTurn)
-  - mark the gameboard square(game.gameboard.sqr#) that was clicked with the player who's turn it is
-  - add one to the game.playCount
-  - check for a win
-    - if there's a win, activate the winning function
-  - check for a draw
-    - if there's a draw, activate draw function
-  - switch who's turn
 
-When a win is found
-  - the winner message is displayed
-  - storage is updated with the win
-  - the winning side's points get updated from storage
-  - the display of wins is updated
-  - the gameboard is reassigned to a new instance of game
-  - the game display is reset
 
-When a draw is found
-  - draw message is displayed
-  - gameboard is reassigned to a new instance of gameboard
-  - the game display is reset
-*/
+
+
+
+
+
+
+//

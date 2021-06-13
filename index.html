@@ -9,33 +9,31 @@
     <aside class="side-bar" id="player1Score">
       <img class="dragon icon" src="./assets/1566741.svg" alt="dragon">
       <h2>Wins</h2>
-      <p>#</p>
+      <p id="dragon1">#</p>
     </aside>
     <main>
       <div class="winner-display">
-        <h1>It's</h1>
-        <img class="dragon winner" src="./assets/1566741.svg" alt="dragon">
-        <img class="unicorn winner" src="./assets/2023216.svg" alt="unicorn" hidden>
-        <h1>'s Turn</h1>
+        <h1 id="its">It's</h1>
+        <img class="dragon winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+        <img class="unicorn winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn" hidden>
+        <h1 id="turnOrWin">'s Turn</h1>
       </div>
-      <section class="gameboard">
-        <button id="sqr1">
-          <img class="icon" src="./assets/1566741.svg" alt="dragon">
-        </button>
-        <button id="sqr2"></button>
-        <button id="sqr3"></button>
-        <button id="sqr4"></button>
-        <button id="sqr5"></button>
-        <button id="sqr6"></button>
-        <button id="sqr7"></button>
-        <button id="sqr8"></button>
-        <button id="sqr9"></button>
+      <section class="gameboard" id="gameboard">
+        <button id="one"></button>
+        <button id="two"></button>
+        <button id="three"></button>
+        <button id="four"></button>
+        <button id="five"></button>
+        <button id="six"></button>
+        <button id="seven"></button>
+        <button id="eight"></button>
+        <button id="nine"></button>
       </section>
     </main>
     <aside class="side-bar" id="player2Score">
       <img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">
       <h2>Wins!</h2>
-      <p>#</p>
+      <p id="unicorn2">#</p>
     </aside>
 
     <script type="text/javascript" src="./player.js" ></script>
