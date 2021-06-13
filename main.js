@@ -22,7 +22,10 @@ function play(event) {
   displayBoard();
   checkWinner();
   checkDraw();
-  declareWhosTurn();
+
+  if (!currentGame.checkForWin() && !currentGame.checkForDraw()) {
+    declareWhosTurn();
+  }
 };
 
 function checkWinner() {
@@ -40,25 +43,38 @@ function checkWinner() {
 
 function checkDraw() {
   if (currentGame.checkForDraw()) {
-    //display draw message
+    console.log('should display draw message');
     header.innerHTML = `<h1>It's a draw</h1>`;
     window.setTimeout(startNewGame, 5000);
   }
 }
 
 function declareWhosTurn() {
-  if (currentGame.whosTurn === 'player1') {
-    dragonImg.hidden = false;
-    unicornImg.hidden = true;
+  if (currentGame.whosTurn === 'player2') {
+    console.log('should display dragon\'s turn')
+    header.innerHTML = `<h1 id="its">It's</h1>
+    <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+    <h1 id="turnOrWin">'s Turn</h1>`
   } else {
-    dragonImg.hidden = true;
-    unicornImg.hidden = false;
+    console.log('should display unicorn turn')
+    header.innerHTML = `<h1 id="its">It's</h1>
+    <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
+    <h1 id="turnOrWin">'s Turn</h1>`
   }
 };
 
 function declareWinner() {
-  its.hidden = true;
-  turnOrWin.innerText = 'won!';
+  if (currentGame.whosTurn === 'player1') {
+    console.log('dragon won')
+    header.innerHTML = `
+    <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+    <h1 id="turnOrWin"> is the Winner!</h1>`
+  } else {
+    console.log('unicorn won')
+    header.innerHTML = `
+    <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
+    <h1 id="turnOrWin">is the Winner!</h1>`
+  }
 };
 
 function updateScoreDisplay(winnerInfo) {
@@ -85,10 +101,9 @@ function selectSquare(squareId) {
 function startNewGame() {
   currentGame.resetBoard(dragon, unicorn);
   displayBoard();
-  dragonImg.hidden = false;
-  unicornImg.hidden = true;
-  its.hidden = false;
-  turnOrWin.innerText = 's Turn';
+  header.innerHTML = `<h1 id="its">It's</h1>
+  <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+  <h1 id="turnOrWin">'s Turn</h1>`
 };
 
 function displayBoard() {
