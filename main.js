@@ -1,7 +1,7 @@
 //global variables
-var p1 = new Player('player1', 'dragon');
-var p2 = new Player('player2', 'unicorn');
-var currentGame = new Game(p1, p2);
+var dragon = new Player('player1', 'dragon1');
+var unicorn = new Player('player2', 'unicorn2');
+var currentGame = new Game(dragon,  unicorn);
 
 var board = document.getElementById('gameboard');
 
@@ -10,7 +10,6 @@ board.addEventListener('click', function(event) {
   play(event);
 });
 
-
 //functions
 
 function play(event) {
@@ -18,19 +17,32 @@ function play(event) {
   selectSquare(event.target.id);
   displayBoard();
 
-  if (currentGame.checkForWin()) {
+  var winner = currentGame.checkForWin();
+  if (winner) {
+    //disable eventListener
+    currentGame[winner].wins += 1;;
     //save win (to storage)
+    currentGame[winner].saveWinsToStorage();
     //display winnings (from storage)
+    updateScore(currentGame[winner]);
+    //reset board via timer
     window.setTimeout(startNewGame, 3000);
   }
 
-  var draw = currentGame.checkForDraw();
-  if (draw) {
+  if (currentGame.checkForDraw()) {
     //display draw message
-    console.log(draw);
-    window.setTimeout(startNewGame, 3000);
+    window.setTimeout(startNewGame, 5000);
   }
 
+}
+
+function declareWinner() {
+
+}
+
+function updateScore(winnerInfo) {
+  var scoreToUpdate = document.getElementById(winnerInfo.token);
+  scoreToUpdate.innerText = winnerInfo.wins;
 }
 
 function setWhosTurn() {
@@ -63,8 +75,8 @@ function displayWinner() {
 }
 
 function startNewGame() {
-  currentGame.resetBoard(p1,p2);
-  //reset display
+  currentGame.resetBoard(dragon, unicorn);
+  displayBoard();
 }
 
 function displayBoard() {
@@ -72,11 +84,11 @@ function displayBoard() {
     var squareToMark = document.getElementById(property);
 
     if (currentGame.gameboard[property] === 'player1') {
-     squareToMark.innerHTML = '<img class="icon" src="./assets/1566741.svg" alt="dragon">';
-    }
-
-    if (currentGame.gameboard[property] === 'player2'){
+      squareToMark.innerHTML = '<img class="icon" src="./assets/1566741.svg" alt="dragon">';
+    } else if (currentGame.gameboard[property] === 'player2'){
       squareToMark.innerHTML = '<img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">';
+    } else {
+      squareToMark.innerHTML = '';
     }
   }
 }
