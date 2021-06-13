@@ -4,10 +4,6 @@ var unicorn = new Player('player2', 'unicorn2');
 var currentGame = new Game(dragon,  unicorn);
 
 var board = document.getElementById('gameboard');
-var dragonsTurn = document.getElementById('dragonImg');
-var unicornsTurn = document.getElementById('unicornImg');
-var its = document.getElementById('its');
-var turnOrWin = document.getElementById('turnOrWin');
 var header = document.getElementById('title');
 
 //event listeners
@@ -32,6 +28,8 @@ function checkWinner() {
   var winner = currentGame.checkForWin();
   if (winner) {
     //disable event listener
+
+
     currentGame[winner].wins += 1;;
     currentGame[winner].saveWinsToStorage();
     declareWinner();
@@ -43,7 +41,6 @@ function checkWinner() {
 
 function checkDraw() {
   if (currentGame.checkForDraw()) {
-    console.log('should display draw message');
     header.innerHTML = `<h1>It's a draw</h1>`;
     window.setTimeout(startNewGame, 5000);
   }
@@ -101,9 +98,10 @@ function selectSquare(squareId) {
 function startNewGame() {
   currentGame.resetBoard(dragon, unicorn);
   displayBoard();
-  header.innerHTML = `<h1 id="its">It's</h1>
-  <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-  <h1 id="turnOrWin">'s Turn</h1>`
+  header.innerHTML = `
+    <h1 id="its">It's</h1>
+    <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+    <h1 id="turnOrWin">'s Turn</h1>`
 };
 
 function displayBoard() {
