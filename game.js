@@ -14,7 +14,7 @@ class Game {
       nine: 9
     }
     this.playCount = 0;
-    this.whosTurn = null;
+    this.whosTurn = 'player1';
   }
 
   checkForWin() {
@@ -53,7 +53,7 @@ class Game {
       winner = square.one;
       console.log('found a winner', 'diagnol 2')
     }
-    return winner;
+    return winner; //equates to 'dragon' or 'unicorn'
   };
 
   checkForDraw() {
@@ -64,5 +64,6 @@ class Game {
 
   resetBoard(player1, player2) {
     currentGame = new Game(player1, player2);
+    
   }
 }

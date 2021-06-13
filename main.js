@@ -4,6 +4,8 @@ var unicorn = new Player('player2', 'unicorn2');
 var currentGame = new Game(dragon,  unicorn);
 
 var board = document.getElementById('gameboard');
+var dragonsTurn = document.getElementById('dragonImg');
+var unicornsTurn = document.getElementById('unicornImg');
 
 //event listeners
 board.addEventListener('click', function(event) {
@@ -11,21 +13,20 @@ board.addEventListener('click', function(event) {
 });
 
 //functions
-
 function play(event) {
   setWhosTurn();
   selectSquare(event.target.id);
   displayBoard();
+  declareWhosTurn();
 
   var winner = currentGame.checkForWin();
   if (winner) {
     //disable eventListener
     currentGame[winner].wins += 1;;
-    //save win (to storage)
     currentGame[winner].saveWinsToStorage();
+    declareWinner();
     //display winnings (from storage)
-    updateScore(currentGame[winner]);
-    //reset board via timer
+    updateScoreDisplay(currentGame[winner]); //displays from data model
     window.setTimeout(startNewGame, 3000);
   }
 
@@ -33,14 +34,23 @@ function play(event) {
     //display draw message
     window.setTimeout(startNewGame, 5000);
   }
+}
 
+function declareWhosTurn() { //HAS BUGS
+  if (currentGame.whosTurn === 'player2') {
+    dragonImg.hidden = false;
+    unicornImg.hidden = true;
+  } else {
+    dragonImg.hidden = true;
+    unicornImg.hidden = false;
+  }
 }
 
 function declareWinner() {
 
 }
 
-function updateScore(winnerInfo) {
+function updateScoreDisplay(winnerInfo) {
   var scoreToUpdate = document.getElementById(winnerInfo.token);
   scoreToUpdate.innerText = winnerInfo.wins;
 }
@@ -61,14 +71,6 @@ function selectSquare(squareId) {
   }
 };
 
-// function displayToken(squareId) {
-//   var squareToMark = document.getElementById(squareId);
-//   if (currentGame.gameboard[squareId] === 'player1') {
-//     squareToMark.innerHTML = '<img class="icon" src="./assets/1566741.svg" alt="dragon">';
-//   } else {
-//     squareToMark.innerHTML = '<img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">';
-//   }
-// }
 
 function displayWinner() {
 
