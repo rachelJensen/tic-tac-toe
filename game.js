@@ -1,7 +1,7 @@
 class Game {
-  constructor(player1, player2) {
-    this.player1 = player1;
-    this.player2 = player2;
+  constructor() {
+    this.player1 = new Player('player1', 'dragon1');
+    this.player2 = new Player('player2', 'unicorn2');
     this.gameboard = {
       one: 1,
       two: 2,
@@ -15,6 +15,7 @@ class Game {
     }
     this.playCount = 0;
     this.whosTurn = 'player1';
+    this.hasWinner = false;
   }
 
   checkForWin() {
@@ -55,7 +56,7 @@ class Game {
   }
 
   resetBoard(player1, player2) {
-    currentGame = new Game(player1, player2);
-
+    currentGame = new Game();
+    board.addEventListener('click', play);
   }
 }

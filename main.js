@@ -1,15 +1,15 @@
 //global variables
-var dragon = new Player('player1', 'dragon1');
-var unicorn = new Player('player2', 'unicorn2');
-var currentGame = new Game(dragon,  unicorn);
+var currentGame = new Game();
 
 var board = document.getElementById('gameboard');
 var header = document.getElementById('title');
 
 //event listeners
-board.addEventListener('click', function(event) {
-  play(event);
-});
+// board.addEventListener('click', function(event) {
+//   play(event);
+// });
+
+board.addEventListener('click', play);
 
 //functions
 function play(event) {
@@ -28,7 +28,7 @@ function checkWinner() {
   var winner = currentGame.checkForWin();
   if (winner) {
     //disable event listener
-
+    board.removeEventListener('click', play);
 
     currentGame[winner].wins += 1;;
     currentGame[winner].saveWinsToStorage();
@@ -96,7 +96,7 @@ function selectSquare(squareId) {
 };
 
 function startNewGame() {
-  currentGame.resetBoard(dragon, unicorn);
+  currentGame.resetBoard();
   displayBoard();
   header.innerHTML = `
     <h1 id="its">It's</h1>
