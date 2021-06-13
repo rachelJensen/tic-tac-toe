@@ -19,21 +19,25 @@ function play(event) {
   setWhosTurn();
   selectSquare(event.target.id);
   displayBoard();
+  checkWinner();
+  checkDraw();
+  declareWhosTurn();
+};
 
+function checkWinner() {
   var winner = currentGame.checkForWin();
   if (winner) {
     //disable eventListener
     currentGame[winner].wins += 1;;
     currentGame[winner].saveWinsToStorage();
     declareWinner();
-    //display winnings (from storage)
-    updateScoreDisplay(currentGame[winner]); //displays from data model
+    updateScoreDisplay(currentGame[winner]); //FIX from Storage
     window.setTimeout(startNewGame, 3000);
     return;
   }
+};
 
-  declareWhosTurn();
-
+function checkDraw() {
   if (currentGame.checkForDraw()) {
     //display draw message
     window.setTimeout(startNewGame, 5000);
@@ -48,17 +52,17 @@ function declareWhosTurn() { //HAS BUGS
     dragonImg.hidden = true;
     unicornImg.hidden = false;
   }
-}
+};
 
 function declareWinner() {
   its.hidden = true;
   turnOrWin.innerText = 'won!';
-}
+};
 
 function updateScoreDisplay(winnerInfo) {
   var scoreToUpdate = document.getElementById(winnerInfo.token);
   scoreToUpdate.innerText = winnerInfo.wins;
-}
+};
 
 function setWhosTurn() {
   if (currentGame.playCount % 2 === 0) {
@@ -66,7 +70,7 @@ function setWhosTurn() {
   } else {
     currentGame.whosTurn = currentGame.player2.id;
   }
-}
+};
 
 function selectSquare(squareId) {
   var mark = currentGame.whosTurn;
@@ -83,21 +87,23 @@ function startNewGame() {
   unicornImg.hidden = true; //fixes bug in declareWhosTurn
   its.hidden = false;
   turnOrWin.innerText = 's Turn';
-}
+};
 
 function displayBoard() {
   for (var property in currentGame.gameboard) {
     var squareToMark = document.getElementById(property);
 
     if (currentGame.gameboard[property] === 'player1') {
-      squareToMark.innerHTML = '<img class="icon" src="./assets/1566741.svg" alt="dragon">';
+      squareToMark.innerHTML =
+        '<img class="icon" src="./assets/1566741.svg" alt="dragon">';
     } else if (currentGame.gameboard[property] === 'player2'){
-      squareToMark.innerHTML = '<img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">';
+      squareToMark.innerHTML =
+        '<img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">';
     } else {
       squareToMark.innerHTML = '';
     }
   }
-}
+};
 
 
 
