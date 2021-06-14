@@ -1,5 +1,5 @@
 //global variables
-var currentGame = new Game();
+var currentGame = new Game('player1');
 
 var board = document.getElementById('gameboard');
 var header = document.getElementById('title');
@@ -14,14 +14,16 @@ board.addEventListener('click', play);
 
 //functions
 function play(event) {
-  setWhosTurn();
-  selectSquare(event.target.id);
-  displayBoard();
-  checkWinner();
-  checkDraw();
-
-  if (!currentGame.hasWinner && !currentGame.checkForDraw()) {
-    declareWhosTurn();
+  if (typeof currentGame.gameboard[event.target.id] === 'number') {
+    console.log('acceptable move');
+    selectSquare(event.target.id);
+    displayBoard();
+    checkWinner();
+    checkDraw();
+    if (!currentGame.hasWinner && !currentGame.checkForDraw()) {
+      setWhosTurn();
+      declareWhosTurn();
+    }
   }
 };
 
@@ -29,14 +31,18 @@ function checkWinner() {
   var winner = currentGame.checkForWin();
   if (winner) {
     board.removeEventListener('click', play);
-    var wins = currentGame[winner].retrieveWinsFromStorage();
-    currentGame[winner].wins = wins + 1;
-    currentGame[winner].saveWinsToStorage();
+    updateScore(winner);
     currentGame.hasWinner = true;
     displayWinner();
     updateScoreDisplay(currentGame[winner]);
     window.setTimeout(startNewGame, 3000);
   }
+};
+
+function updateScore(winner) {
+  var wins = currentGame[winner].retrieveWinsFromStorage();
+  currentGame[winner].wins = wins + 1;
+  currentGame[winner].saveWinsToStorage();
 };
 
 function checkDraw() {
@@ -47,7 +53,7 @@ function checkDraw() {
 }
 
 function declareWhosTurn() {
-  if (currentGame.whosTurn === 'player2') {
+  if (currentGame.whosTurn === 'player1') {
     header.innerHTML = `
       <h1 id="its">It's</h1>
       <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
@@ -78,10 +84,10 @@ function updateScoreDisplay(winnerInfo) {
 };
 
 function setWhosTurn() {
-  if (currentGame.playCount % 2 === 0) {
-    currentGame.whosTurn = currentGame.player1.id;
+  if (currentGame.whosTurn === 'player1') {
+    currentGame.whosTurn = 'player2';
   } else {
-    currentGame.whosTurn = currentGame.player2.id;
+    currentGame.whosTurn = 'player1';
   }
 };
 
@@ -119,8 +125,21 @@ function displayBoard() {
   }
 };
 
-
-
+// function sayDragonsTurn() {
+//   header.innerHTML = `
+//     <h1 id="its">It's</h1>
+//     <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+//     <h1 id="turnOrWin">'s Turn</h1>`;
+// }
+//
+// function sayUnicornsTurn() {
+//   header.innerHTML = `
+//     <h1 id="its">It's</h1>
+//     <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
+//     <h1 id="turnOrWin">'s Turn</h1>`
+// }
+//
+// function displayWhosTurn
 
 
 
