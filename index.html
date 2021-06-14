@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <title>Fantasy Tic-Tac-Toe</title>
   </head>
@@ -15,24 +17,24 @@
       <div class="winner-display" id="title">
         <h1 id="its">It's</h1>
         <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-        <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn" hidden>
+        <!-- <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn" hidden> -->
         <h1 id="turnOrWin">'s Turn</h1>
       </div>
       <section class="gameboard" id="gameboard">
-        <button id="one"></button>
-        <button id="two"></button>
-        <button id="three"></button>
-        <button id="four"></button>
-        <button id="five"></button>
-        <button id="six"></button>
-        <button id="seven"></button>
-        <button id="eight"></button>
-        <button id="nine"></button>
+        <button class="bottom right" id="one"></button>
+        <button class="bottom right left" id="two"></button>
+        <button class="bottom left" id="three"></button>
+        <button class="top bottom right" id="four"></button>
+        <button class="top bottom right left"id="five"></button>
+        <button class="top bottom left"id="six"></button>
+        <button class="top right" id="seven"></button>
+        <button class="top right left" id="eight"></button>
+        <button class="top left" id="nine"></button>
       </section>
     </main>
     <aside class="side-bar" id="player2Score">
-      <img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">
-      <h2>Wins!</h2>
+      <img class="unicorn icon" src="./assets/2023216.svg" alt="unicorn">
+      <h2>Wins</h2>
       <p id="unicorn2">#</p>
     </aside>
 

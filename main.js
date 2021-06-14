@@ -111,22 +111,12 @@ function displayBoard() {
 
     if (currentGame.gameboard[property] === 'player1') {
       squareToMark.innerHTML =
-        '<img class="icon" src="./assets/1566741.svg" alt="dragon">';
+        '<img class="dragon token" src="./assets/1566741.svg" alt="dragon">';
     } else if (currentGame.gameboard[property] === 'player2'){
       squareToMark.innerHTML =
-        '<img class="player2 icon" src="./assets/2023216.svg" alt="unicorn">';
+        '<img class="unicorn token" src="./assets/2023216.svg" alt="unicorn">';
     } else {
       squareToMark.innerHTML = '';
     }
   }
 };
-
-
-
-
-
-
-
-
-
-//
