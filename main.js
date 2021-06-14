@@ -1,5 +1,5 @@
 //global variables
-var currentGame = new Game();
+var currentGame = new Game('player1');
 
 var board = document.getElementById('gameboard');
 var header = document.getElementById('title');
@@ -14,13 +14,13 @@ board.addEventListener('click', play);
 
 //functions
 function play(event) {
-  setWhosTurn();
+  //setWhosTurn(); //this might need to move into the conditional
   selectSquare(event.target.id);
   displayBoard();
   checkWinner();
   checkDraw();
-
   if (!currentGame.hasWinner && !currentGame.checkForDraw()) {
+    setWhosTurn();
     declareWhosTurn();
   }
 };
@@ -51,17 +51,18 @@ function checkDraw() {
 }
 
 function declareWhosTurn() {
-  if (currentGame.whosTurn === 'player2') {
-    header.innerHTML = `
-      <h1 id="its">It's</h1>
-      <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-      <h1 id="turnOrWin">'s Turn</h1>`
-  } else {
-    header.innerHTML = `
-      <h1 id="its">It's</h1>
-      <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
-      <h1 id="turnOrWin">'s Turn</h1>`
-  }
+  console.log('declareWhosTurn:', currentGame.whosTurn);
+  // if (currentGame.whosTurn === 'player2') {
+  //   header.innerHTML = `
+  //     <h1 id="its">It's</h1>
+  //     <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+  //     <h1 id="turnOrWin">'s Turn</h1>`
+  // } else {
+  //   header.innerHTML = `
+  //     <h1 id="its">It's</h1>
+  //     <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
+  //     <h1 id="turnOrWin">'s Turn</h1>`
+  // }
 };
 
 function displayWinner() {
@@ -82,11 +83,17 @@ function updateScoreDisplay(winnerInfo) {
 };
 
 function setWhosTurn() {
-  if (currentGame.playCount % 2 === 0) {
-    currentGame.whosTurn = currentGame.player1.id;
+  if (currentGame.whosTurn === 'player1') {
+    currentGame.whosTurn = 'player2';
   } else {
-    currentGame.whosTurn = currentGame.player2.id;
+    currentGame.whosTurn = 'player1';
   }
+
+  // if (currentGame.playCount % 2 === 0) {
+  //   currentGame.whosTurn = currentGame.player1.id;
+  // } else {
+  //   currentGame.whosTurn = currentGame.player2.id;
+  // }
 };
 
 function selectSquare(squareId) {

@@ -1,5 +1,5 @@
 class Game {
-  constructor() {
+  constructor(whoGoesFirst) {
     this.player1 = new Player('player1', 'dragon1');
     this.player2 = new Player('player2', 'unicorn2');
     this.gameboard = {
@@ -14,7 +14,7 @@ class Game {
       nine: 9
     }
     this.playCount = 0;
-    this.whosTurn = 'player1';
+    this.whosTurn = whoGoesFirst;
     this.hasWinner = false;
   }
 
@@ -56,7 +56,14 @@ class Game {
   }
 
   resetBoard() {
-    currentGame = new Game();
-    // board.addEventListener('click', play);
+    if (this.whosTurn === 'player1') {
+      console.log('this players went last:', this.whosTurn)
+      currentGame = new Game('player2');
+      console.log('resetBoard: Unicorn should go first')
+    } else {
+      console.log('this players went last:', this.whosTurn)
+      currentGame = new Game('player1');
+      console.log('resetBoard: Dragon should go first')
+    }
   }
 }
