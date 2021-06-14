@@ -57,6 +57,6 @@ class Game {
 
   resetBoard() {
     currentGame = new Game();
-    board.addEventListener('click', play);
+    // board.addEventListener('click', play);
   }
 }
