@@ -26,6 +26,30 @@ function play(event) {
   }
 };
 
+function selectSquare(squareId) {
+  var mark = currentGame.whosTurn;
+  if (typeof currentGame.gameboard[squareId] === 'number') {
+    currentGame.gameboard[squareId] = mark;
+    currentGame.playCount++;
+  }
+};
+
+function displayBoard() {
+  for (var property in currentGame.gameboard) {
+    var squareToMark = document.getElementById(property);
+
+    if (currentGame.gameboard[property] === 'player1') {
+      squareToMark.innerHTML =
+      '<img class="dragon token" src="./assets/1566741.svg" alt="dragon">';
+    } else if (currentGame.gameboard[property] === 'player2'){
+      squareToMark.innerHTML =
+      '<img class="unicorn token" src="./assets/2023216.svg" alt="unicorn">';
+    } else {
+      squareToMark.innerHTML = '';
+    }
+  }
+};
+
 function checkWinner() {
   var winner = currentGame.checkForWin();
   if (winner) {
@@ -44,42 +68,28 @@ function updateScore(winner) {
   currentGame[winner].saveWinsToStorage();
 };
 
-function checkDraw() {
-  if (currentGame.checkForDraw()) {
-    header.innerHTML = `<h1>It's a draw</h1>`;
-    window.setTimeout(startNewGame, 4000);
-  }
-}
-
-function declareWhosTurn() {
-  if (currentGame.whosTurn === 'player1') {
-    header.innerHTML = `
-      <h1 id="its">It's</h1>
-      <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-      <h1 id="turnOrWin">'s Turn</h1>`
-  } else {
-    header.innerHTML = `
-      <h1 id="its">It's</h1>
-      <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
-      <h1 id="turnOrWin">'s Turn</h1>`
-  }
-};
-
 function displayWinner() {
   if (currentGame.whosTurn === 'player1') {
     header.innerHTML = `
-      <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-      <h1 id="turnOrWin"> is the Winner!</h1>`
+    <img class="winner" src="./assets/1566741.svg" alt="dragon">
+    <h1 id="turnOrWin"> is the Winner!</h1>`
   } else {
     header.innerHTML = `
-      <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
-      <h1 id="turnOrWin">is the Winner!</h1>`
+    <img class="winner" src="./assets/2023216.svg" alt="unicorn">
+    <h1 id="turnOrWin">is the Winner!</h1>`
   }
 };
 
 function updateScoreDisplays(winnerInfo) {
   var scoreToUpdate = document.getElementById(winnerInfo.token);
   scoreToUpdate.innerText = currentGame[winnerInfo.id].wins;
+};
+
+function checkDraw() {
+  if (currentGame.checkForDraw()) {
+    header.innerHTML = `<h1>It's a draw</h1>`;
+    window.setTimeout(startNewGame, 4000);
+  }
 };
 
 function setWhosTurn() {
@@ -90,11 +100,17 @@ function setWhosTurn() {
   }
 };
 
-function selectSquare(squareId) {
-  var mark = currentGame.whosTurn;
-  if (typeof currentGame.gameboard[squareId] === 'number') {
-    currentGame.gameboard[squareId] = mark;
-    currentGame.playCount++;
+function declareWhosTurn() {
+  if (currentGame.whosTurn === 'player1') {
+    header.innerHTML = `
+      <h1 id="its">It's</h1>
+      <img class="winner" src="./assets/1566741.svg" alt="dragon">
+      <h1 id="turnOrWin">'s Turn</h1>`
+  } else {
+    header.innerHTML = `
+      <h1 id="its">It's</h1>
+      <img class="winner" src="./assets/2023216.svg" alt="unicorn">
+      <h1 id="turnOrWin">'s Turn</h1>`
   }
 };
 
@@ -103,20 +119,4 @@ function startNewGame() {
   board.addEventListener('click', play);
   displayBoard();
   declareWhosTurn();
-};
-
-function displayBoard() {
-  for (var property in currentGame.gameboard) {
-    var squareToMark = document.getElementById(property);
-
-    if (currentGame.gameboard[property] === 'player1') {
-      squareToMark.innerHTML =
-        '<img class="dragon token" src="./assets/1566741.svg" alt="dragon">';
-    } else if (currentGame.gameboard[property] === 'player2'){
-      squareToMark.innerHTML =
-        '<img class="unicorn token" src="./assets/2023216.svg" alt="unicorn">';
-    } else {
-      squareToMark.innerHTML = '';
-    }
-  }
 };
