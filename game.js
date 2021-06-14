@@ -16,7 +16,7 @@ class Game {
     this.playCount = 0;
     this.whosTurn = whoGoesFirst;
     this.hasWinner = false;
-  }
+  };
 
   checkForWin() {
     var square = this.gameboard;
@@ -53,17 +53,13 @@ class Game {
     if (this.playCount === 9 && !this.hasWinner) {
       return 'draw';
     }
-  }
+  };
 
   resetBoard() {
     if (this.whosTurn === 'player1') {
-      console.log('this players went last:', this.whosTurn)
       currentGame = new Game('player2');
-      console.log('resetBoard: Unicorn should go first')
     } else {
-      console.log('this players went last:', this.whosTurn)
       currentGame = new Game('player1');
-      console.log('resetBoard: Dragon should go first')
     }
-  }
-}
+  };
+};
