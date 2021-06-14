@@ -103,10 +103,7 @@ function startNewGame() {
   currentGame.resetBoard();
   board.addEventListener('click', play);
   displayBoard();
-  header.innerHTML = `
-    <h1 id="its">It's</h1>
-    <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-    <h1 id="turnOrWin">'s Turn</h1>`
+  declareWhosTurn();
 };
 
 function displayBoard() {
@@ -124,22 +121,6 @@ function displayBoard() {
     }
   }
 };
-
-// function sayDragonsTurn() {
-//   header.innerHTML = `
-//     <h1 id="its">It's</h1>
-//     <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-//     <h1 id="turnOrWin">'s Turn</h1>`;
-// }
-//
-// function sayUnicornsTurn() {
-//   header.innerHTML = `
-//     <h1 id="its">It's</h1>
-//     <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
-//     <h1 id="turnOrWin">'s Turn</h1>`
-// }
-//
-// function displayWhosTurn
 
 
 
