@@ -15,12 +15,17 @@ body {
   flex-direction: column;
   align-items: center;
   width: 25%;
-  background-color: teal;
+  /* background-color: teal; */
   color: white;
 }
 
-.icon {
-  margin: 20px;
+.dragonSide {
+  background-image: linear-gradient(#FFFF00, #FFA500, #FF4500, #DC143C);
+
+}
+
+.unicornSide {
+  background-image: linear-gradient(#ADFF2F, #00CED1, #008080);
 }
 
 h2 {
@@ -44,10 +49,12 @@ main {
   align-items: center;
   width: 50%;
   padding: 30px;
+  background-color: #F0FFFF;
 }
 
 h1 {
   margin: 20px, 10px;
+  font-size: 40px;
 }
 
 .winner-display {
@@ -59,14 +66,29 @@ h1 {
   height: 60px;
   width: 60px;
   margin: 10px;
-
 }
 
-.icon,
-.token {
+.icon {
   height: 100px;
   width: 100px;
+  margin: 35px;
   padding: 20px;
+}
+
+.token {
+  height: 80%;
+  width: 80%;
+  padding: 10%;
+}
+
+.dragon {
+  background: radial-gradient(#FF4500, #FFFF4C, #F0FFFF);
+}
+
+.unicorn {
+  /* background: radial-gradient(#F0FFFF, #9ACD32, #008080); */
+  background: radial-gradient(#008080, #9ACD32, #F0FFFF);
+
 }
 
 .gameboard {
@@ -90,14 +112,14 @@ button {
 }
 
 .right {
-  border-right: 3px solid black;
+  border-right: 5px solid black;
 }
 .left {
-  border-left: 3px solid black;
+  border-left: 5px solid black;
 }
 .top {
-  border-top: 3px solid black;
+  border-top: 5px solid black;
 }
 .bottom {
-  border-bottom: 3px solid black;
+  border-bottom: 5px solid black;
 }
