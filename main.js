@@ -6,8 +6,8 @@ var header = document.getElementById('title');
 
 //event listeners
 window.addEventListener('load', function() {
-  updateScoreDisplay(currentGame.player1);
-  updateScoreDisplay(currentGame.player2);
+  updateScoreDisplays(currentGame.player1);
+  updateScoreDisplays(currentGame.player2);
 });
 
 board.addEventListener('click', play);
@@ -15,7 +15,6 @@ board.addEventListener('click', play);
 //functions
 function play(event) {
   if (typeof currentGame.gameboard[event.target.id] === 'number') {
-    console.log('acceptable move');
     selectSquare(event.target.id);
     displayBoard();
     checkWinner();
@@ -30,12 +29,12 @@ function play(event) {
 function checkWinner() {
   var winner = currentGame.checkForWin();
   if (winner) {
+    currentGame.hasWinner = true;
     board.removeEventListener('click', play);
     updateScore(winner);
-    currentGame.hasWinner = true;
     displayWinner();
-    updateScoreDisplay(currentGame[winner]);
-    window.setTimeout(startNewGame, 3000);
+    updateScoreDisplays(currentGame[winner]);
+    window.setTimeout(startNewGame, 4000);
   }
 };
 
@@ -48,7 +47,7 @@ function updateScore(winner) {
 function checkDraw() {
   if (currentGame.checkForDraw()) {
     header.innerHTML = `<h1>It's a draw</h1>`;
-    window.setTimeout(startNewGame, 5000);
+    window.setTimeout(startNewGame, 4000);
   }
 }
 
@@ -78,7 +77,7 @@ function displayWinner() {
   }
 };
 
-function updateScoreDisplay(winnerInfo) {
+function updateScoreDisplays(winnerInfo) {
   var scoreToUpdate = document.getElementById(winnerInfo.token);
   scoreToUpdate.innerText = currentGame[winnerInfo.id].wins;
 };
