@@ -55,7 +55,7 @@ class Game {
     }
   }
 
-  resetBoard(player1, player2) {
+  resetBoard() {
     currentGame = new Game();
     board.addEventListener('click', play);
   }

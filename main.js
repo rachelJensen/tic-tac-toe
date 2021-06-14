@@ -5,9 +5,10 @@ var board = document.getElementById('gameboard');
 var header = document.getElementById('title');
 
 //event listeners
-// board.addEventListener('click', function(event) {
-//   play(event);
-// });
+window.addEventListener('load', function() {
+  updateScoreDisplay(currentGame.player1);
+  updateScoreDisplay(currentGame.player2);
+});
 
 board.addEventListener('click', play);
 
@@ -19,7 +20,7 @@ function play(event) {
   checkWinner();
   checkDraw();
 
-  if (!currentGame.checkForWin() && !currentGame.checkForDraw()) {
+  if (!currentGame.hasWinner && !currentGame.checkForDraw()) {
     declareWhosTurn();
   }
 };
@@ -27,15 +28,14 @@ function play(event) {
 function checkWinner() {
   var winner = currentGame.checkForWin();
   if (winner) {
-    //disable event listener
     board.removeEventListener('click', play);
-
-    currentGame[winner].wins += 1;;
+    var wins = currentGame[winner].retrieveWinsFromStorage();
+    currentGame[winner].wins = wins + 1;
     currentGame[winner].saveWinsToStorage();
-    declareWinner();
-    updateScoreDisplay(currentGame[winner]); //FIX from Storage
+    currentGame.hasWinner = true;
+    displayWinner();
+    updateScoreDisplay(currentGame[winner]);
     window.setTimeout(startNewGame, 3000);
-    return;
   }
 };
 
@@ -48,35 +48,33 @@ function checkDraw() {
 
 function declareWhosTurn() {
   if (currentGame.whosTurn === 'player2') {
-    console.log('should display dragon\'s turn')
-    header.innerHTML = `<h1 id="its">It's</h1>
-    <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-    <h1 id="turnOrWin">'s Turn</h1>`
+    header.innerHTML = `
+      <h1 id="its">It's</h1>
+      <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+      <h1 id="turnOrWin">'s Turn</h1>`
   } else {
-    console.log('should display unicorn turn')
-    header.innerHTML = `<h1 id="its">It's</h1>
-    <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
-    <h1 id="turnOrWin">'s Turn</h1>`
+    header.innerHTML = `
+      <h1 id="its">It's</h1>
+      <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
+      <h1 id="turnOrWin">'s Turn</h1>`
   }
 };
 
-function declareWinner() {
+function displayWinner() {
   if (currentGame.whosTurn === 'player1') {
-    console.log('dragon won')
     header.innerHTML = `
-    <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-    <h1 id="turnOrWin"> is the Winner!</h1>`
+      <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+      <h1 id="turnOrWin"> is the Winner!</h1>`
   } else {
-    console.log('unicorn won')
     header.innerHTML = `
-    <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
-    <h1 id="turnOrWin">is the Winner!</h1>`
+      <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
+      <h1 id="turnOrWin">is the Winner!</h1>`
   }
 };
 
 function updateScoreDisplay(winnerInfo) {
   var scoreToUpdate = document.getElementById(winnerInfo.token);
-  scoreToUpdate.innerText = winnerInfo.wins;
+  scoreToUpdate.innerText = currentGame[winnerInfo.id].wins;
 };
 
 function setWhosTurn() {
