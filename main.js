@@ -95,6 +95,7 @@ function selectSquare(squareId) {
 
 function startNewGame() {
   currentGame.resetBoard();
+  board.addEventListener('click', play);
   displayBoard();
   header.innerHTML = `
     <h1 id="its">It's</h1>
