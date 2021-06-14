@@ -50,7 +50,7 @@ class Game {
   };
 
   checkForDraw() {
-    if (this.playCount === 9) {
+    if (this.playCount === 9 && !this.hasWinner) {
       return 'draw';
     }
   }

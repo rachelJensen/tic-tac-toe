@@ -14,14 +14,16 @@ board.addEventListener('click', play);
 
 //functions
 function play(event) {
-  //setWhosTurn(); //this might need to move into the conditional
-  selectSquare(event.target.id);
-  displayBoard();
-  checkWinner();
-  checkDraw();
-  if (!currentGame.hasWinner && !currentGame.checkForDraw()) {
-    setWhosTurn();
-    declareWhosTurn();
+  if (typeof currentGame.gameboard[event.target.id] === 'number') {
+    console.log('acceptable move');
+    selectSquare(event.target.id);
+    displayBoard();
+    checkWinner();
+    checkDraw();
+    if (!currentGame.hasWinner && !currentGame.checkForDraw()) {
+      setWhosTurn();
+      declareWhosTurn();
+    }
   }
 };
 
@@ -51,18 +53,17 @@ function checkDraw() {
 }
 
 function declareWhosTurn() {
-  console.log('declareWhosTurn:', currentGame.whosTurn);
-  // if (currentGame.whosTurn === 'player2') {
-  //   header.innerHTML = `
-  //     <h1 id="its">It's</h1>
-  //     <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-  //     <h1 id="turnOrWin">'s Turn</h1>`
-  // } else {
-  //   header.innerHTML = `
-  //     <h1 id="its">It's</h1>
-  //     <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
-  //     <h1 id="turnOrWin">'s Turn</h1>`
-  // }
+  if (currentGame.whosTurn === 'player1') {
+    header.innerHTML = `
+      <h1 id="its">It's</h1>
+      <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+      <h1 id="turnOrWin">'s Turn</h1>`
+  } else {
+    header.innerHTML = `
+      <h1 id="its">It's</h1>
+      <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
+      <h1 id="turnOrWin">'s Turn</h1>`
+  }
 };
 
 function displayWinner() {
@@ -88,12 +89,6 @@ function setWhosTurn() {
   } else {
     currentGame.whosTurn = 'player1';
   }
-
-  // if (currentGame.playCount % 2 === 0) {
-  //   currentGame.whosTurn = currentGame.player1.id;
-  // } else {
-  //   currentGame.whosTurn = currentGame.player2.id;
-  // }
 };
 
 function selectSquare(squareId) {
@@ -130,14 +125,21 @@ function displayBoard() {
   }
 };
 
-function sayDragonsTurn() {
-  header.innerHTML = `
-    <h1 id="its">It's</h1>
-    <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
-    <h1 id="turnOrWin">'s Turn</h1>`;
-}
-
-
+// function sayDragonsTurn() {
+//   header.innerHTML = `
+//     <h1 id="its">It's</h1>
+//     <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+//     <h1 id="turnOrWin">'s Turn</h1>`;
+// }
+//
+// function sayUnicornsTurn() {
+//   header.innerHTML = `
+//     <h1 id="its">It's</h1>
+//     <img class="winner" id="unicornImg" src="./assets/2023216.svg" alt="unicorn">
+//     <h1 id="turnOrWin">'s Turn</h1>`
+// }
+//
+// function displayWhosTurn
 
 
 
