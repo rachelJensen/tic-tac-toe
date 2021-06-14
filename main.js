@@ -40,10 +40,10 @@ function displayBoard() {
 
     if (currentGame.gameboard[property] === 'player1') {
       squareToMark.innerHTML =
-      '<img class="dragon token" src="./assets/1566741.svg" alt="dragon">';
+        '<img class="dragon token" src="./assets/1566741.svg" alt="dragon">';
     } else if (currentGame.gameboard[property] === 'player2'){
       squareToMark.innerHTML =
-      '<img class="unicorn token" src="./assets/2023216.svg" alt="unicorn">';
+        '<img class="unicorn token" src="./assets/2023216.svg" alt="unicorn">';
     } else {
       squareToMark.innerHTML = '';
     }
@@ -71,12 +71,12 @@ function updateScore(winner) {
 function displayWinner() {
   if (currentGame.whosTurn === 'player1') {
     header.innerHTML = `
-    <img class="winner" src="./assets/1566741.svg" alt="dragon">
-    <h1 id="turnOrWin"> is the Winner!</h1>`
+      <img class="winner glow" src="./assets/1566741.svg" alt="dragon">
+      <h1 id="turnOrWin"> is the Winner!</h1>`
   } else {
     header.innerHTML = `
-    <img class="winner" src="./assets/2023216.svg" alt="unicorn">
-    <h1 id="turnOrWin">is the Winner!</h1>`
+      <img class="winner glow" src="./assets/2023216.svg" alt="unicorn">
+      <h1 id="turnOrWin">is the Winner!</h1>`
   }
 };
 
