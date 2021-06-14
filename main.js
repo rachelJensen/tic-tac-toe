@@ -29,14 +29,18 @@ function checkWinner() {
   var winner = currentGame.checkForWin();
   if (winner) {
     board.removeEventListener('click', play);
-    var wins = currentGame[winner].retrieveWinsFromStorage();
-    currentGame[winner].wins = wins + 1;
-    currentGame[winner].saveWinsToStorage();
+    updateScore(winner);
     currentGame.hasWinner = true;
     displayWinner();
     updateScoreDisplay(currentGame[winner]);
     window.setTimeout(startNewGame, 3000);
   }
+};
+
+function updateScore(winner) {
+  var wins = currentGame[winner].retrieveWinsFromStorage();
+  currentGame[winner].wins = wins + 1;
+  currentGame[winner].saveWinsToStorage();
 };
 
 function checkDraw() {
@@ -119,6 +123,12 @@ function displayBoard() {
   }
 };
 
+function sayDragonsTurn() {
+  header.innerHTML = `
+    <h1 id="its">It's</h1>
+    <img class="winner" id="dragonImg" src="./assets/1566741.svg" alt="dragon">
+    <h1 id="turnOrWin">'s Turn</h1>`;
+}
 
 
 
