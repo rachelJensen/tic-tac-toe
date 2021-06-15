@@ -15,4 +15,3 @@ class Player {
     return retrievedWins;
   };
 };
-// 
