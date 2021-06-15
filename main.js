@@ -3,6 +3,7 @@ var currentGame = new Game('player1');
 
 var board = document.getElementById('gameboard');
 var header = document.getElementById('title');
+var resetBtb = document.getElementById('resetBtn');
 
 //event listeners
 window.addEventListener('load', function() {
@@ -11,6 +12,8 @@ window.addEventListener('load', function() {
 });
 
 board.addEventListener('click', play);
+
+resetBtn.addEventListener('click', resetScores);
 
 //functions
 function play(event) {
@@ -119,4 +122,14 @@ function startNewGame() {
   board.addEventListener('click', play);
   displayBoard();
   declareWhosTurn();
+};
+
+function resetScores() {
+  currentGame.player1.wins = 0;
+  currentGame.player2.wins = 0;
+  currentGame.player1.saveWinsToStorage();
+  currentGame.player2.saveWinsToStorage();
+
+  updateScoreDisplays(currentGame.player1);
+  updateScoreDisplays(currentGame.player2);
 };
