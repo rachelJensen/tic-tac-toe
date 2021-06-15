@@ -99,7 +99,6 @@ button {
   padding: 0%;
   cursor: pointer;
   background-color: #F0FFFF;
-  /* border: none; */
   border: 10px solid #F0FFFF;
 }
 
@@ -117,11 +116,15 @@ button {
 }
 
 .glow {
-  box-shadow: 0 8px 10px -6px  #A64CA6;
+  box-shadow: 0 8px 10px -6px  gold;
 }
 .reset {
-  height: 4vh;
-  width: 8vh;
-  border: 2px solid blue;
-  background-color: purple;
+  height: 5vh;
+  width: 16vh;
+  margin-top: 5vh;
+  border: 5px solid #FFFFFF;
+  background-color: lavender;
+  font-size: 28px;
+  font-family: 'Viaoda Libre', cursive;
+  box-shadow: 0 8px 10px -6px  #A64CA6;
 }
