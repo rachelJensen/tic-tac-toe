@@ -61,7 +61,7 @@ function checkWinner() {
     updateScore(winner);
     displayWinner();
     updateScoreDisplays(currentGame[winner]);
-    window.setTimeout(startNewGame, 4000);
+    window.setTimeout(startNewGame, 3000);
   }
 };
 
@@ -95,7 +95,7 @@ function updateScoreDisplays(winnerInfo) {
 function checkDraw() {
   if (currentGame.checkForDraw()) {
     header.innerHTML = `<h1>It's a draw</h1>`;
-    window.setTimeout(startNewGame, 4000);
+    window.setTimeout(startNewGame, 3000);
   }
 };
 
