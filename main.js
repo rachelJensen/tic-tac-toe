@@ -74,12 +74,16 @@ function updateScore(winner) {
 function displayWinner() {
   if (currentGame.whosTurn === 'player1') {
     header.innerHTML = `
-      <img class="winner glow" src="./assets/1566741.svg" alt="dragon">
-      <h1 id="turnOrWin"> is the Winner!</h1>`;
+      <div class="winner-display glow-red">
+        <img class="winner" src="./assets/1566741.svg" alt="dragon">
+        <h1 id="turnOrWin"> is the Winner!</h1>
+      </div>`;
   } else {
     header.innerHTML = `
-      <img class="winner glow" src="./assets/2023216.svg" alt="unicorn">
-      <h1 id="turnOrWin">is the Winner!</h1>`;
+      <div class="winner-display glow-teal">
+        <img class="winner" src="./assets/2023216.svg" alt="unicorn">
+        <h1 id="turnOrWin">is the Winner!</h1>
+      </div>`;
   }
 };
 
