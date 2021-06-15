@@ -87,7 +87,7 @@ h1 {
   flex-wrap: wrap;
   height:48vh;
   width: 45vh;
-  border: 10px solid white;
+  border: 10px solid #F0FFFF;
   padding: 0%;
   margin: 5vh;
 }
@@ -98,8 +98,8 @@ button {
   margin: 0%;
   padding: 0%;
   cursor: pointer;
-  background-color: #FFFFFF;
-  border: none;
+  background-color: #F0FFFF;
+  border: 10px solid #F0FFFF;
 }
 
 .right {
@@ -116,5 +116,15 @@ button {
 }
 
 .glow {
+  box-shadow: 0 8px 10px -6px  gold;
+}
+.reset {
+  height: 5vh;
+  width: 16vh;
+  margin-top: 5vh;
+  border: 5px solid #FFFFFF;
+  background-color: lavender;
+  font-size: 28px;
+  font-family: 'Viaoda Libre', cursive;
   box-shadow: 0 8px 10px -6px  #A64CA6;
 }
