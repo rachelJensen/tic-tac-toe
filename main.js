@@ -72,11 +72,11 @@ function displayWinner() {
   if (currentGame.whosTurn === 'player1') {
     header.innerHTML = `
       <img class="winner glow" src="./assets/1566741.svg" alt="dragon">
-      <h1 id="turnOrWin"> is the Winner!</h1>`
+      <h1 id="turnOrWin"> is the Winner!</h1>`;
   } else {
     header.innerHTML = `
       <img class="winner glow" src="./assets/2023216.svg" alt="unicorn">
-      <h1 id="turnOrWin">is the Winner!</h1>`
+      <h1 id="turnOrWin">is the Winner!</h1>`;
   }
 };
 
@@ -105,12 +105,12 @@ function declareWhosTurn() {
     header.innerHTML = `
       <h1 id="its">It's</h1>
       <img class="winner" src="./assets/1566741.svg" alt="dragon">
-      <h1 id="turnOrWin">'s Turn</h1>`
+      <h1 id="turnOrWin">'s Turn</h1>`;
   } else {
     header.innerHTML = `
       <h1 id="its">It's</h1>
       <img class="winner" src="./assets/2023216.svg" alt="unicorn">
-      <h1 id="turnOrWin">'s Turn</h1>`
+      <h1 id="turnOrWin">'s Turn</h1>`;
   }
 };
 

@@ -1,25 +1,47 @@
-[Link to organizational doc](https://gist.github.com/rachelJensen/935124f1e5874025ae757bb21a5a908a)
+# Fantasy Tic-Tac-Toe
 
-When the page loads, a new game should be ready to be played.
+## Table of Contents
+  - [Introduction](##Introduction)
+  - [Technologies](##Technologies)
+  - [Contributors](##Contributors)
+  - [Features](##Features)
+  - [Illustrations](##Illustrations)
+  - [Possible Future Extensions](##Possible-Future-Extensions)
+  - [Sources](##Sources)
+  - [Project Specs](##Project-Specs)
 
-Each click will...
-  - check who's turn it is (game.is1sTurn)
-  - mark the gameboard square(game.gameboard.sqr#) that was clicked with the player who's turn it is
-  - check for a win
-    - if there's a win, activate the winning function
-  - check for a draw
-    - if there's a draw, activate draw function
-  - switch who's turn
+## Introduction
 
-When a win is found
-  - the winner message is displayed
-  - storage is updated with the win
-  - the winning side's points get updated from storage
-  - the display of wins is updated
-  - the gameboard is reassigned to a new instance of game
-  - the game display is reset
+A fun twist on a classic game, Fantasy tic-tac-toe lets users play as a dragon and a unicorn, and keeps track of their respective wins, in this alternating play set-up.
 
-When a draw is found
-  - draw message is displayed
-  - gameboard is reassigned to a new instance of gameboard
-  - the game display is reset
+## Technologies
+  - Javascript
+  - HTML
+  - CSS
+
+## Contributors
+  - [Rachel Jensen](https://github.com/rachelJensen)
+
+## Features
+ - Easy click-to-play functionality automatically switches between players
+ - Wins are captured and displayed prominently
+ - Wins are stored between games, so reloading the page won't erase user victories
+
+## Illustrations
+
+[Watch this cool recording of the webpage in action]()
+
+
+## Possible Future Extensions
+
+  - Allow users to select from a variety of fantastic tokens
+
+## Sources
+  - [MDN](http://developer.mozilla.org/en-US/)
+  - [CSSTricks](https://css-tricks.com/)
+
+## Project Specs
+  - The project spec & rubric can be found [here](https://frontend.turing.edu/projects/module-1/tic-tac-toe-solo.html)
+
+
+  [Link to organizational doc](https://gist.github.com/rachelJensen/935124f1e5874025ae757bb21a5a908a)
