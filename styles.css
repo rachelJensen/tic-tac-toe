@@ -52,7 +52,7 @@ main {
 }
 
 h1 {
-  margin: 20px, 10px;
+  margin: 20px 10px 0px 10px;
   font-size: 40px;
 }
 
@@ -115,9 +115,18 @@ button {
   border-bottom: 5px solid black;
 }
 
-.glow {
-  box-shadow: 0 8px 10px -6px  gold;
+.glow-teal {
+  border-radius: 15px;
+  box-shadow:inset 5px 5px 10px #ADFF2F,
+  inset -5px -5px 10px #008080;
 }
+
+.glow-red {
+  border-radius: 15px;
+  box-shadow:inset -5px 5px 10px #FFFF00,
+  inset 5px -5px 10px #FFA500;
+}
+
 .reset {
   height: 5vh;
   width: 16vh;
