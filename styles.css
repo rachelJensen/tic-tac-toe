@@ -87,9 +87,9 @@ h1 {
   flex-wrap: wrap;
   height:48vh;
   width: 45vh;
-  border: 10px solid #F0FFFF;
   padding: 0%;
   margin: 5vh;
+  border: 10px solid #F0FFFF;
 }
 
 button {
@@ -122,9 +122,10 @@ button {
   height: 5vh;
   width: 16vh;
   margin-top: 5vh;
-  border: 5px solid #FFFFFF;
+  cursor: pointer;
   background-color: lavender;
   font-size: 3vh;
   font-family: 'Viaoda Libre', cursive;
+  border: 5px solid #FFFFFF;
   box-shadow: 0 8px 10px -6px  #A64CA6;
 }
